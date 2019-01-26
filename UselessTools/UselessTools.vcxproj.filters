@@ -24,12 +24,18 @@
     <ClCompile Include="..\..\..\modules\console_as_gui\util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PlotWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\modules\console_as_gui\console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\modules\console_as_gui\util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlotWnd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
