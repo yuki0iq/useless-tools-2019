@@ -100,10 +100,10 @@ void CPlotWnd::DoPaint(HDC hDC)
 		while (ver < w_mid)
 		{
 			ver += PLOT_UNIT;
-			MoveToEx(hDC, 0, w_mid + ver, NULL);
-			LineTo(hDC, m_wndH, w_mid + ver);
-			MoveToEx(hDC, 0, w_mid - ver, NULL);
-			LineTo(hDC, m_wndH, w_mid - ver);
+			MoveToEx(hDC, w_mid + ver, 0, NULL);
+			LineTo(hDC, w_mid + ver, m_wndH);
+			MoveToEx(hDC, w_mid - ver, 0, NULL);
+			LineTo(hDC, w_mid - ver, m_wndH);
 		}
 	}
 	SelectObject(hDC, hOldPen);
