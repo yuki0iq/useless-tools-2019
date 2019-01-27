@@ -110,11 +110,6 @@ void CPlotWnd::DoPaint(HDC hDC)
 	DeleteObject(hPen);
 
 	//AXES
-	char kkk[1000] = { "\0" };
-	sprintf(kkk, "O(%g;%g), X=%g, Y=%g", m_Xm, m_Ym, m_Xs, m_Ys);
-	TextOut(hDC, 10, 10, kkk, strlen(kkk));
-	TextOut(hDC, 10, 25, m_pInfo, strlen(m_pInfo));
-
 	hPen = CreatePen(PS_SOLID, 2, RGB(0, 0, 0));
 	hOldPen = SelectObject(hDC, hPen);
 	{
@@ -160,6 +155,12 @@ void CPlotWnd::DoPaint(HDC hDC)
 	}
 	SelectObject(hDC, hOldPen);
 	DeleteObject(hPen);
+
+	//FUNC-DATA
+	char kkk[1000] = { "\0" };
+	sprintf(kkk, "O(%g;%g), X=%g, Y=%g", m_Xm, m_Ym, m_Xs, m_Ys);
+	TextOut(hDC, 10, 10, kkk, strlen(kkk));
+	TextOut(hDC, 10, 25, m_pInfo, strlen(m_pInfo));
 }
 
 void CPlotWnd::DoSize()
@@ -203,24 +204,19 @@ LRESULT CPlotWnd::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 int CPlotWnd::REALtoPX_X(double x)
 {
-	double dxu = x - m_Xm;
-	double wu = m_wndW / (double)PLOT_UNIT;
-	double dpixel = m_wndW * dxu / wu;
-	int pos = (int)round(dpixel) + m_wndW/2;
+	int pos = (int)round(m_wndW * (x - m_Xm) / (m_Xs * m_wndW / (double)PLOT_UNIT)) + m_wndW/2;
 	return pos;
 }
 
 int CPlotWnd::REALtoPX_Y(double y)
 {
-	double dyu = y - m_Ym;
-	double hu = m_wndH / (double)PLOT_UNIT;
-	double dpixel = (double)m_wndH * dyu / hu;
+	double dpixel = (double)m_wndH * (y - m_Ym) / (m_Ys * m_wndH / (double)PLOT_UNIT);
 	int pos = m_wndH / 2 - (int)round(dpixel);
 	return pos;
 }
 
 double CPlotWnd::PXtoREAL_X(int x)
 {
-	double dxu = ((double)x - m_wndW/2.) / (double)PLOT_UNIT + m_Xm;
+	double dxu = ((double)x - m_wndW/2.) * m_Xs / (double)PLOT_UNIT + m_Xm;
 	return dxu;
 }

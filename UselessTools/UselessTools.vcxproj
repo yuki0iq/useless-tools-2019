@@ -152,12 +152,15 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\modules\console_as_gui\console.cpp" />
     <ClCompile Include="..\..\..\modules\console_as_gui\util.cpp" />
+    <ClCompile Include="duktape.c" />
     <ClCompile Include="PlotWnd.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\modules\console_as_gui\console.h" />
     <ClInclude Include="..\..\..\modules\console_as_gui\util.h" />
+    <ClInclude Include="duktape.h" />
+    <ClInclude Include="duk_config.h" />
     <ClInclude Include="PlotWnd.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
